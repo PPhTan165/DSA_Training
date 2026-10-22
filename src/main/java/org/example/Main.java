@@ -9,8 +9,11 @@ import java.util.*;
 public class Main {
     static void main() {
         String[] strs = {"flower", "flow", "flight"};
+        String s = "cbbd";
 
-        System.out.println(StringDSA.validPalindrome("abc"));
+        String longest = StringDSA.longestPalindromeSubstring(s);
+
+        System.out.println(longest);
 
     }
 }
