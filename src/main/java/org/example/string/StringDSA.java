@@ -8,10 +8,6 @@ import java.util.Map;
 public class StringDSA {
     private String str;
 
-    public StringDSA(String string) {
-        this.str = string;
-    }
-
     public void showVowels(String str){
         List<java.lang.String> vowels = new ArrayList<>();
         StringBuilder vowel = new StringBuilder();
@@ -50,6 +46,50 @@ public class StringDSA {
                 break;
             }
         }
+    }
+
+    public static boolean isAnagram(String str1, String str2){
+        if(str1.length() != str2.length()) return false;
+
+        Map<Character,Integer> map = new HashMap<>();
+
+        for(char c : str1.toCharArray()){
+            if(!map.containsKey(c)){
+                map.put(c,1);
+            }else {
+                map.put(c,map.get(c) + 1);
+            }
+        }
+
+        for(char c : str2.toCharArray()){
+            if(!map.containsKey(c)){
+                return false;
+            }
+            map.put(c,map.get(c) -1);
+            if(map.get(c) < 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Chỉ áp dụng khi đề cho Chữ là toàn bộ là lowercase or uppercase trong range a-z
+    public static boolean isAnagramLowerCase(String s, String t){
+        if(s.length() != t.length()) return false;
+
+        int[] count = new int[26];
+
+       for(int i = 0; i<s.length();i++){
+           count[s.charAt(i)-'a']++;
+           count[t.charAt(i)-'a']--;
+       }
+
+       for(int num : count){
+           if(num != 0){
+               return false;
+           }
+       }
+       return true;
     }
 
     public static boolean isVowel(char c) {
