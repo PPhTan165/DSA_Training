@@ -8,10 +8,11 @@ import java.util.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
+        String[] strs = {"flower", "flow", "flight"};
 
-        boolean anagram = StringDSA.isAnagramLowerCase("anagram","nagaram");
+        String prefix = StringDSA.longestCommonPrefix(strs);
+        System.out.println(prefix);
 
-        System.out.println(anagram);
     }
 }
 

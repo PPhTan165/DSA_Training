@@ -92,6 +92,24 @@ public class StringDSA {
        return true;
     }
 
+    public static String longestCommonPrefix(String[] strs){
+        if(strs.length == 0){
+            return "";
+        }
+        String prefix = strs[0];
+
+        for(int j = 0; j < prefix.length();j++){
+            char c = prefix.charAt(j);
+
+            for(int i = 1; i< strs.length; i++){
+                if(strs[i].length() == j || strs[i].charAt(j) != c){
+                    return prefix.substring(0,j);
+                }
+            }
+        }
+        return prefix;
+    }
+
     public static boolean isVowel(char c) {
         return "aeiou".indexOf(c) != -1;
     }
