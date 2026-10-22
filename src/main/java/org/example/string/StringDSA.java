@@ -110,6 +110,37 @@ public class StringDSA {
         return prefix;
     }
 
+    public static boolean validPalindrome(String str){
+        int left = 0; int right = str.length() -1;
+
+        while(left < right){
+            if(str.charAt(left) == str.charAt(right)){
+
+                left++;
+                right--;
+
+            }else{
+                boolean skipL = checkPalindrome(str,left+1,right);
+                boolean skipR = checkPalindrome(str,left,right-1);
+
+                return skipL || skipR;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkPalindrome(String s, int left, int right){
+        while(left < right){
+           if(s.charAt(left) != s.charAt(right)){
+            return false;
+           }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
     public static boolean isVowel(char c) {
         return "aeiou".indexOf(c) != -1;
     }

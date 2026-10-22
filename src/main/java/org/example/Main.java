@@ -10,8 +10,7 @@ public class Main {
     static void main() {
         String[] strs = {"flower", "flow", "flight"};
 
-        String prefix = StringDSA.longestCommonPrefix(strs);
-        System.out.println(prefix);
+        System.out.println(StringDSA.validPalindrome("abc"));
 
     }
 }
