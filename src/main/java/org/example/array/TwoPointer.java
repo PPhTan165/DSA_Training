@@ -126,7 +126,7 @@ public class TwoPointer {
         // i không cần chạy hết length vì 2 phần từ sau là left và right để tạo bộ 3.
         for (int i = 0; i < nums.length - 2; i++) {
 
-            if(nums[i] > 0) break;
+            if (nums[i] > 0) break;
 
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
@@ -170,16 +170,75 @@ public class TwoPointer {
         int left = 0;
         int right = 0;
 
-        while (right < nums.length){
-            if(nums[right] == val){
+        while (right < nums.length) {
+            if (nums[right] == val) {
                 right++;
-            }else{
+            } else {
                 nums[left] = nums[right];
                 left++;
                 right++;
             }
         }
         return left;
+    }
+
+    public List<List<Integer>> findPairs(int[] nums, int target) {
+        if (nums.length == 0) return new ArrayList<>();
+        int left = 0;
+        int right = nums.length - 1;
+        List<List<Integer>> results = new ArrayList<>();
+
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+
+            if (sum > target) {
+                right--;
+            } else if (sum < target) {
+                left++;
+            } else {
+                results.add(Arrays.asList(
+                        nums[left],
+                        nums[right]
+                ));
+                left++;
+                right--;
+
+                while (left < right && nums[left] == nums[left - 1]) {
+                    left++;
+                }
+                while (left < right && nums[right] == nums[right + 1]) {
+                    right--;
+                }
+
+            }
+        }
+        return results;
+    }
+
+    public void sortColors(int[] nums) {
+        if (nums.length == 0) return;
+
+        int left = 0;
+        int right = nums.length - 1;
+        int cur = 0;
+        while (cur <= right) {
+            if (nums[cur] == 0) {
+                swap(nums, left, cur);
+                left++;
+                cur++;
+            } else if (nums[cur] == 2) {
+                swap(nums, right, cur);
+                right--;
+
+            }else{
+                cur++;
+            }
+
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i] + " ");
+        }
     }
 
     private void swap(int[] nums, int slow, int fast) {
