@@ -1,5 +1,10 @@
 package org.example.array;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class TwoPointer {
     public int removeDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
@@ -100,7 +105,7 @@ public class TwoPointer {
             int h = Math.min(height[left], height[right]);
             int area = width * h;
 
-            maxArea = Math.max(maxArea,area);
+            maxArea = Math.max(maxArea, area);
 
             if (height[left] < height[right]) {
                 left++;
@@ -109,6 +114,56 @@ public class TwoPointer {
             }
         }
         return maxArea;
+    }
+
+    //3Sum
+    public List<List<Integer>> threeSum(int[] nums) {
+        if (nums.length == 0) return new ArrayList<>();
+
+        Arrays.sort(nums);
+        List<List<Integer>> results = new ArrayList<>();
+
+        // i không cần chạy hết length vì 2 phần từ sau là left và right để tạo bộ 3.
+        for (int i = 0; i < nums.length - 2; i++) {
+
+            if(nums[i] > 0) break;
+
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum < 0) {
+                    left++;
+                } else if (sum > 0) {
+                    right--;
+                } else {
+                    results.add(Arrays.asList(
+                            nums[i],
+                            nums[left],
+                            nums[right]
+                    ));
+                    left++;
+                    right--;
+
+                    //check duplicate left
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+
+                    //check duplicate right
+                    while (right > left && nums[right] == nums[right + 1]) {
+                        right--;
+                    }
+                }
+            }
+        }
+        return results;
     }
 
     private void swap(int[] nums, int slow, int fast) {
