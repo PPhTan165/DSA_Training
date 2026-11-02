@@ -166,6 +166,22 @@ public class TwoPointer {
         return results;
     }
 
+    public int removeElement(int[] nums, int val) {
+        int left = 0;
+        int right = 0;
+
+        while (right < nums.length){
+            if(nums[right] == val){
+                right++;
+            }else{
+                nums[left] = nums[right];
+                left++;
+                right++;
+            }
+        }
+        return left;
+    }
+
     private void swap(int[] nums, int slow, int fast) {
         int temp = nums[slow];
         nums[slow] = nums[fast];
