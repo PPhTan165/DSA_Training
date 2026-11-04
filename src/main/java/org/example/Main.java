@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.array.BinarySearch;
 import org.example.array.TwoPointer;
 
 import java.util.ArrayList;
@@ -10,13 +11,10 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        int[] nums1 = {2,0,2,1,1,0};
-        int[] nums2 = {3,2,3,2,3};
-        int[] nums3 = {1, 1, 2, 2, 3, 4, 4, 5};
-        int[] height = {4, 2, 6, 3, 2, 5};
+        int[] nums1 = {1,3,5,6};
 
-        TwoPointer twoPointer = new TwoPointer();
-            System.out.print(twoPointer.trap(height));
+//        TwoPointer twoPointer = new TwoPointer();
+//            System.out.print(twoPointer.trap(height));
 
 //        System.out.print(twoPointer.removeElement(nums2,3));
 
@@ -40,6 +38,10 @@ public class Main {
 //        twoPointer.moveZeroes(nums2);
 //        System.out.println(Arrays.toString(twoPointer.twoSum(nums3, 10)));
 
+
+        BinarySearch binarySearch = new BinarySearch();
+//        System.out.println(binarySearch.search(nums1,9));
+        System.out.println(binarySearch.searchInsert(nums1,4));
     }
 }
 
