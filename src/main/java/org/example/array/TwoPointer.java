@@ -31,13 +31,11 @@ public class TwoPointer {
         int j = 0;
 
         while (j < nums.length) {
-            if (nums[j] == 0) {
-                j++;
-            } else {
+            if (nums[j] != 0) {
                 swap(nums, i, j);
                 i++;
-                j++;
             }
+            j++;
         }
 
         for (i = 0; i < nums.length; i++) {
@@ -230,7 +228,7 @@ public class TwoPointer {
                 swap(nums, right, cur);
                 right--;
 
-            }else{
+            } else {
                 cur++;
             }
 
@@ -239,6 +237,32 @@ public class TwoPointer {
         for (int i = 0; i < nums.length; i++) {
             System.out.print(nums[i] + " ");
         }
+    }
+
+    public int trap(int[] height) {
+        if (height.length == 0) return 0;
+
+        int water = 0;
+        int left = 0;
+        int right = height.length - 1;
+        int leftMax = 0;
+        int rightMax = 0;
+
+        while (left < right) {
+            leftMax = Math.max(height[left], leftMax);
+            rightMax = Math.max(height[right], rightMax);
+
+
+
+            if (rightMax >= leftMax) {
+                water += leftMax - height[left];
+                left++;
+            } else {
+                water += rightMax - height[right];
+                right--;
+            }
+        }
+        return water;
     }
 
     private void swap(int[] nums, int slow, int fast) {

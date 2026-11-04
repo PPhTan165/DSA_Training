@@ -13,11 +13,14 @@ public class Main {
         int[] nums1 = {2,0,2,1,1,0};
         int[] nums2 = {3,2,3,2,3};
         int[] nums3 = {1, 1, 2, 2, 3, 4, 4, 5};
+        int[] height = {4, 2, 6, 3, 2, 5};
 
         TwoPointer twoPointer = new TwoPointer();
+            System.out.print(twoPointer.trap(height));
+
 //        System.out.print(twoPointer.removeElement(nums2,3));
 
-        twoPointer.sortColors(nums1);
+//        twoPointer.sortColors(nums1);
 
 //        List<List<Integer>> results = twoPointer.findPairs(nums3,6);
 //        for (int i = 0; i < results.toArray().length; i++){
