@@ -78,10 +78,10 @@ public class BinarySearch {
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if(canEatAll(piles,h,mid)){
+            if (canEatAll(piles, h, mid)) {
                 result = mid;
-                high = mid -1;
-            }else{
+                high = mid - 1;
+            } else {
                 low = mid + 1;
             }
 
@@ -89,12 +89,52 @@ public class BinarySearch {
         return result;
     }
 
-    private boolean canEatAll(int[] piles, int h, int speed){
+    private boolean canEatAll(int[] piles, int h, int speed) {
         long totalHours = 0;
-        for(int pile : piles){
-            totalHours += (pile + speed - 1)/ speed;
-            if(totalHours > h) return false;
+        for (int pile : piles) {
+            totalHours += (pile + speed - 1) / speed;
+            if (totalHours > h) return false;
         }
         return totalHours <= h;
     }
+
+    public int splitArray(int[] nums, int k) {
+        if (nums.length == 0) return -1;
+        int left = 0, right = 0;
+        for (int num : nums) {
+            left = Math.max(num, left);
+            right += num;
+        }
+        int result = right;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (canSplit(nums, k, mid)) {
+                result = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return result;
+    }
+
+    private boolean canSplit(int[] nums, int k, int maxSum) {
+        int sum = 0, groups = 1;
+        for (int num : nums) {
+
+            if (sum + num > maxSum) {
+                sum = num;
+                groups++;
+                if (groups > k) {
+                    return false;
+                }
+            } else {
+                sum += num;
+            }
+        }
+        return true;
+    }
+
 }
