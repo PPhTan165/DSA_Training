@@ -11,7 +11,8 @@ import java.util.List;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        int[] nums1 = {1, 2, 3, 4, 5};
+        int[] nums1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] nums2 = {3, 2, 2, 4, 1, 4};
 
 //        TwoPointer twoPointer = new TwoPointer();
 //            System.out.print(twoPointer.trap(height));
@@ -44,7 +45,8 @@ public class Main {
 //        System.out.println(binarySearch.searchInsert(nums1,4));
 //        System.out.print(binarySearch.searchRotated(nums1,5));
 //        System.out.print(binarySearch.minEatingSpeed(nums1,5));
-        System.out.print(binarySearch.splitArray(nums1,2));
+//        System.out.print(binarySearch.splitArray(nums1,2));
+        System.out.print(binarySearch.shipWithinDays(nums2,1));
     }
 }
 

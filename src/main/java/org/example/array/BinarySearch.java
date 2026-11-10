@@ -137,4 +137,50 @@ public class BinarySearch {
         return true;
     }
 
+    public int shipWithinDays(int[] weights, int days) {
+        if (weights.length == 0) return -1;
+
+        int sumWeight = 0;
+        int maxWeight = 0;
+
+        for (int weight : weights) {
+            maxWeight = Math.max(weight, maxWeight);
+            sumWeight += weight;
+        }
+
+        int low = Math.max(maxWeight, (sumWeight + days - 1) / days);
+        int high = sumWeight;
+        int result = low;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (canLoad(weights, days, mid)) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result;
+    }
+
+
+    private boolean canLoad(int[] nums, int days, int maxWeight) {
+        int sum = 0;
+        int d = 1;
+
+        for (int num : nums) {
+            if (sum + num > maxWeight) {
+                sum = num;
+                d++;
+                if (d > days) {
+                    return false;
+                }
+            } else {
+                sum += num;
+            }
+        }
+        return true;
+    }
 }
